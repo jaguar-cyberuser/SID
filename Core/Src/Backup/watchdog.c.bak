@@ -1,0 +1,91 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file    watchdog.c
+  * @brief   Implementation of watchdog module
+  ******************************************************************************
+  * Модуль для работы с независимым сторожевом таймером (IWDG).
+  * Настраивает таймаут ~1 секунда и предоставляет функции для обновления.
+  * Инициализация выполняется в MX_IWDG_Init(), здесь только сервисные функции.
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Includes ------------------------------------------------------------------*/
+#include "watchdog.h"
+/* USER CODE BEGIN Includes */
+#include "main.h"
+#include "config.h"
+/* USER CODE END Includes */
+
+/* Private variables ---------------------------------------------------------*/
+/* USER CODE BEGIN PV */
+extern IWDG_HandleTypeDef hiwdg;
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief Инициализация независимого watchdog-таймера
+  * @retval None
+  * @note Функция оставлена для совместимости, но теперь пустая
+  *       Вся инициализация выполняется в MX_IWDG_Init() в main.c
+  *       Настройки: Prescaler=32, Reload=1250 -> таймаут ~1 секунда
+  */
+void IWDG_Init(void)
+{
+  /* USER CODE BEGIN IWDG_Init_1 */
+  // Функция оставлена для совместимости, но теперь пустая
+  // Вся инициализация выполняется в MX_IWDG_Init() в main.c
+  // hiwdg.Instance = IWDG;
+  // hiwdg.Init.Prescaler = IWDG_PRESCALER_32;
+  // hiwdg.Init.Reload = 1250;
+  
+  // if (HAL_IWDG_Init(&hiwdg) != HAL_OK)
+  // {
+  //   Error_Handler();
+  // }
+  /* USER CODE END IWDG_Init_1 */
+}
+
+/**
+  * @brief Обновление (сброс) watchdog-таймера
+  * @retval None
+  * @note Должен вызываться регулярно в основном цикле и критических секциях
+  *       Если не вызывать более 1 секунды - произойдет сброс системы
+  *       Используется для контроля работоспособности основного цикла
+  */
+void IWDG_Refresh(void)
+{
+  /* USER CODE BEGIN IWDG_Refresh_1 */
+  HAL_IWDG_Refresh(&hiwdg);
+  /* USER CODE END IWDG_Refresh_1 */
+}
+
+/**
+  * @brief Callback-функция при срабатывании watchdog
+  * @retval None
+  * @note Вызывается при срабатывании watchdog таймера
+  *       Перед сбросом можно сохранить диагностическую информацию
+  *       В текущей реализации просто выполняет аппаратный сброс
+  */
+void IWDG_Timeout_Callback(void)
+{
+  /* USER CODE BEGIN IWDG_Timeout_Callback_1 */
+  // Перед сбросом можно сохранить диагностическую информацию
+  // Например, записать причину сброса в специальную область памяти
+  NVIC_SystemReset();
+  /* USER CODE END IWDG_Timeout_Callback_1 */
+}
+
+/* USER CODE BEGIN 1 */
+
+/* USER CODE END 1 */
