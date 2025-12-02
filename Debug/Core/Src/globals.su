@@ -1,4 +1,0 @@
-../Core/Src/globals.c:64:17:HAL_GetTick	8	static
-../Core/Src/globals.c:75:10:GET_TICKS	16	static,ignoring_inline_asm
-../Core/Src/globals.c:95:6:TICKS_ELAPSED	24	static
-../Core/Src/globals.c:119:6:HARDWARE_DELAY	24	static,ignoring_inline_asm

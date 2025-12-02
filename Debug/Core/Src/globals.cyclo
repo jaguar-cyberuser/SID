@@ -1,4 +1,0 @@
-../Core/Src/globals.c:64:17:HAL_GetTick	1
-../Core/Src/globals.c:75:10:GET_TICKS	1
-../Core/Src/globals.c:95:6:TICKS_ELAPSED	2
-../Core/Src/globals.c:119:6:HARDWARE_DELAY	2

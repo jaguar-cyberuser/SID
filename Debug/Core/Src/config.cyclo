@@ -1,9 +1,0 @@
-../Core/Src/config.c:53:9:CONFIG_Is_First_Start	1
-../Core/Src/config.c:63:13:CONFIG_Initialize_Previous_Registers	1
-../Core/Src/config.c:77:6:CONFIG_Load	5
-../Core/Src/config.c:145:6:CONFIG_Save	13
-../Core/Src/config.c:272:6:CONFIG_Reset_Communication_Settings	1
-../Core/Src/config.c:318:6:CONFIG_Set_Defaults	1
-../Core/Src/config.c:370:10:CONFIG_Calculate_CRC	1
-../Core/Src/config.c:384:16:CONFIG_Check_Flash_Ready	5
-../Core/Src/config.c:414:16:CONFIG_Verify_Flash_Data	2
