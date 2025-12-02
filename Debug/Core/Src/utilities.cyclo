@@ -1,0 +1,3 @@
+../Core/Src/utilities.c:88:10:UTILITIES_Calculate_CRC32	2
+../Core/Src/utilities.c:112:10:UTILITIES_Calculate_CRC16	4
+../Core/Src/utilities.c:146:6:UTILITIES_Delay_US	4

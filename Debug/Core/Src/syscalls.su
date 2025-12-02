@@ -1,0 +1,16 @@
+../Core/Src/syscalls.c:34:5:_write	32	static
+../Core/Src/syscalls.c:62:5:_read	24	static
+../Core/Src/syscalls.c:76:5:_close	16	static
+../Core/Src/syscalls.c:87:5:_fstat	16	static
+../Core/Src/syscalls.c:98:5:_isatty	16	static
+../Core/Src/syscalls.c:110:5:_lseek	24	static
+../Core/Src/syscalls.c:120:6:_exit	16	static,ignoring_inline_asm
+../Core/Src/syscalls.c:133:6:_kill	16	static
+../Core/Src/syscalls.c:142:5:_getpid	4	static
+../Core/Src/syscalls.c:151:5:_fork	4	static
+../Core/Src/syscalls.c:161:5:_wait	16	static
+../Core/Src/syscalls.c:171:9:_times	16	static
+../Core/Src/syscalls.c:182:5:_link	16	static
+../Core/Src/syscalls.c:192:5:_unlink	16	static
+../Core/Src/syscalls.c:203:5:_gettimeofday	16	static
+../Core/Src/syscalls.c:217:9:_sbrk	24	static

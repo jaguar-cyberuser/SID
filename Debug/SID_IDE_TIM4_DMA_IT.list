@@ -35,17 +35,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_rnglists 00000d4c  00000000  00000000  0001f050  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00019888  00000000  00000000  0001fd9c  2**0
+ 16 .debug_macro  00019894  00000000  00000000  0001fd9c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00015cc6  00000000  00000000  00039624  2**0
+ 17 .debug_line   00015cc6  00000000  00000000  00039630  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00091138  00000000  00000000  0004f2ea  2**0
+ 18 .debug_str    0009115e  00000000  00000000  0004f2f6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000e0422  2**0
+ 19 .comment      00000043  00000000  00000000  000e0454  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004658  00000000  00000000  000e0468  2**2
+ 20 .debug_frame  00004658  00000000  00000000  000e0498  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005c  00000000  00000000  000e4ac0  2**0
+ 21 .debug_line_str 0000005c  00000000  00000000  000e4af0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1342,7 +1342,7 @@ uint16_t ADC_Get_Filtered_Raw_Value(void)
 
 08000aac <ADC_Get_Scaled_Value>:
   * @brief Получение откалиброванного значения в физических единицах
-  * @retval Откалиброванное значение в милливольтах (канал 1) или миллиамперах (канал 2)
+  * @retval Откалиброванное значение в милливольтах (канал 1) или микроамперах (канал 2)
   * @note Использует VREFINT для точного преобразования
   */
 int32_t ADC_Get_Scaled_Value(void)
@@ -1420,17 +1420,15 @@ int32_t ADC_Get_Scaled_Value(void)
  8000b22:	4413      	add	r3, r2
  8000b24:	617b      	str	r3, [r7, #20]
  8000b26:	e01f      	b.n	8000b68 <ADC_Get_Scaled_Value+0xbc>
-    }  
     else
     {
         // Канал 2: Ток 0-20mA через шунт
-        // Предполагаем: 20mA -> 3.3V, I_mA = V_measured * 20 / 3300
-        physical_value = (voltage_mv * 20UL) / 3300UL;
- 8000b28:	68ba      	ldr	r2, [r7, #8]
- 8000b2a:	4613      	mov	r3, r2
- 8000b2c:	009b      	lsls	r3, r3, #2
- 8000b2e:	4413      	add	r3, r2
- 8000b30:	009b      	lsls	r3, r3, #2
+        // Предполагаем: 20mA -> 3.3V, I_uA = V_measured * 20000 / 3300
+        // 20mA = 20000 микроампер
+        physical_value = (voltage_mv * 20000UL) / 3300UL;
+ 8000b28:	68bb      	ldr	r3, [r7, #8]
+ 8000b2a:	f644 6220 	movw	r2, #20000	@ 0x4e20
+ 8000b2e:	fb02 f303 	mul.w	r3, r2, r3
  8000b32:	089b      	lsrs	r3, r3, #2
  8000b34:	4a11      	ldr	r2, [pc, #68]	@ (8000b7c <ADC_Get_Scaled_Value+0xd0>)
  8000b36:	fba2 2303 	umull	r2, r3, r2, r3
@@ -2180,19 +2178,19 @@ void CONFIG_Set_Defaults(void)
  8000f44:	831a      	strh	r2, [r3, #24]
   
   // Калибровочные коэффициенты по умолчанию (единичные)
-  modbus_registers[MB_CALIB_CH1_MULT] = 1000;   // Множитель 1.000
+  modbus_registers[MB_CALIB_CH1_MULT] = 1000;   // Множитель (для напряжения)
  8000f46:	4b1c      	ldr	r3, [pc, #112]	@ (8000fb8 <CONFIG_Set_Defaults+0xc4>)
  8000f48:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
  8000f4c:	f8a3 2190 	strh.w	r2, [r3, #400]	@ 0x190
-  modbus_registers[MB_CALIB_CH1_OFFSET] = 0;    // Смещение 0.000
+  modbus_registers[MB_CALIB_CH1_OFFSET] = 0;    // Смещение (милливольты)
  8000f50:	4b19      	ldr	r3, [pc, #100]	@ (8000fb8 <CONFIG_Set_Defaults+0xc4>)
  8000f52:	2200      	movs	r2, #0
  8000f54:	f8a3 2192 	strh.w	r2, [r3, #402]	@ 0x192
-  modbus_registers[MB_CALIB_CH2_MULT] = 1000;   // Множитель 1.000
+  modbus_registers[MB_CALIB_CH2_MULT] = 1000;   // Множитель (для тока)
  8000f58:	4b17      	ldr	r3, [pc, #92]	@ (8000fb8 <CONFIG_Set_Defaults+0xc4>)
  8000f5a:	f44f 727a 	mov.w	r2, #1000	@ 0x3e8
  8000f5e:	f8a3 2194 	strh.w	r2, [r3, #404]	@ 0x194
-  modbus_registers[MB_CALIB_CH2_OFFSET] = 0;    // Смещение 0.000
+  modbus_registers[MB_CALIB_CH2_OFFSET] = 0;    // Смещение (микроамперы)
  8000f62:	4b15      	ldr	r3, [pc, #84]	@ (8000fb8 <CONFIG_Set_Defaults+0xc4>)
  8000f64:	2200      	movs	r2, #0
  8000f66:	f8a3 2196 	strh.w	r2, [r3, #406]	@ 0x196

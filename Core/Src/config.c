@@ -339,10 +339,10 @@ void CONFIG_Set_Defaults(void)
   modbus_registers[MB_ADC_FILTER_DEPTH] = 10; // Глубина фильтра по умолчанию
   
   // Калибровочные коэффициенты по умолчанию (единичные)
-  modbus_registers[MB_CALIB_CH1_MULT] = 1000;   // Множитель 1.000
-  modbus_registers[MB_CALIB_CH1_OFFSET] = 0;    // Смещение 0.000
-  modbus_registers[MB_CALIB_CH2_MULT] = 1000;   // Множитель 1.000
-  modbus_registers[MB_CALIB_CH2_OFFSET] = 0;    // Смещение 0.000
+  modbus_registers[MB_CALIB_CH1_MULT] = 1000;   // Множитель (для напряжения)
+  modbus_registers[MB_CALIB_CH1_OFFSET] = 0;    // Смещение (милливольты)
+  modbus_registers[MB_CALIB_CH2_MULT] = 1000;   // Множитель (для тока)
+  modbus_registers[MB_CALIB_CH2_OFFSET] = 0;    // Смещение (микроамперы)
   
   // Устанавливаем уровень доступа 0
   current_access_level = ACCESS_LEVEL_0;

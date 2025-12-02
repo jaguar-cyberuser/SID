@@ -1,0 +1,10 @@
+../Core/Src/adc.c:68:10:ADC_Read_VREFINT	24	static
+../Core/Src/adc.c:120:7:ADC_Get_Actual_VREF	16	static
+../Core/Src/adc.c:149:6:ADC_Init_Start	24	static
+../Core/Src/adc.c:201:6:ADC_Set_Poll_Period	16	static
+../Core/Src/adc.c:245:6:ADC_Update_Filter	32	static,ignoring_inline_asm
+../Core/Src/adc.c:344:10:ADC_Get_Latest_Raw_Value	24	static,ignoring_inline_asm
+../Core/Src/adc.c:361:10:ADC_Get_Filtered_Raw_Value	8	static
+../Core/Src/adc.c:376:9:ADC_Get_Scaled_Value	40	static
+../Core/Src/adc.c:424:9:ADC_Get_Current_Channel	4	static
+../Core/Src/adc.c:440:6:HAL_ADC_ErrorCallback	16	static

@@ -111,6 +111,10 @@
 #define DEFAULT_DEVICE_TYPE     18      // Код типа устройства по умолчанию
 #define DEFAULT_SERIAL_NUMBER   0       // Серийный номер по умолчанию
 
+/* Единицы измерения для калибровки */
+#define VOLTAGE_UNITS_MV        1       // Напряжение в милливольтах
+#define CURRENT_UNITS_UA        1       // Ток в микроамперах
+
 /* USER CODE END CommonDefines */
 
 #endif /* __COMMON_DEFINES_H */

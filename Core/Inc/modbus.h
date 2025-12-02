@@ -44,11 +44,11 @@ extern "C" {
 #define MB_ADC_FILTER_DEPTH     12   // Глубина фильтра АЦП (0-20, 0=фильтрация отключена)
 #define MB_VREFINT_VALUE        13   // Значение VREFINT для диагностики
 #define MB_ADC_RAW_VALUE        100  // Сырое значение АЦП (0-4095)
-#define MB_ADC_SCALED_VALUE     101  // Откалиброванное значение (физическая величина)
+#define MB_ADC_SCALED_VALUE     101  // Откалиброванное значение (милливольты/микроамперы)
 #define MB_CALIB_CH1_MULT       200  // Множитель калибровки канала 1 (напряжение)
-#define MB_CALIB_CH1_OFFSET     201  // Смещение калибровки канала 1 (напряжение)
+#define MB_CALIB_CH1_OFFSET     201  // Смещение калибровки канала 1 (милливольты)
 #define MB_CALIB_CH2_MULT       202  // Множитель калибровки канала 2 (ток)
-#define MB_CALIB_CH2_OFFSET     203  // Смещение калибровки канала 2 (ток)
+#define MB_CALIB_CH2_OFFSET     203  // Смещение калибровки канала 2 (микроамперы)
 #define MB_CONFIG_CRC           500  // Контрольная сумма конфигурации
 
 #define MODBUS_REG_COUNT        501  // Общее количество регистров
